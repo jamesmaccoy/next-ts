@@ -25,7 +25,7 @@ export async function getAtomById(
 const atomDocRef = doc(db, 'anatomy', id);
     const atomsSnapshot = await getDoc(atomDocRef);
     if (atomsSnapshot.exists()) {
-      return { atom: atomsSnapshot.data() as Atom, error: null }; // Changed from Product to Atom
+      return { atom: { ...atomsSnapshot.data() as Atom, id: Number(id) }, error: null }; // Ensure id is a number
     } else {
       return { atom: null, error: 'User not found' };
     }

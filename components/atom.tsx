@@ -1,10 +1,10 @@
 import Link from 'next/link'
 
 import { cn } from '../lib/utils'
-import { getProductsByAtomId, getAtomById } from '../lib/atoms'
+import { getProductsByAtomId, getAtomById } from '@/lib/atoms'
 import { notFound } from 'next/navigation'
 
-export default async function Atom({ slug }: { slug: string[] }) {
+export default async function  Atom({ slug }: { slug: string[] }) {
   // Check if slug is being passed correctly
   console.log({ slug }) // Added log for slug
 

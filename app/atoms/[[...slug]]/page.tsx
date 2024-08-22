@@ -3,7 +3,7 @@
 import Atom from '@/components/atom'
 import Atoms from '@/components/atoms'
 
-import { getProductsByAtomId, getAtoms } from '../../../lib/atoms'
+import { getProductsByAtomId, getAtoms } from '@/lib/atoms'
 
 export async function generateStaticParams() {
   const { atoms } = await getAtoms()
