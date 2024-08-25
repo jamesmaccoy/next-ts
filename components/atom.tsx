@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { cn } from '../lib/utils'
 import { getProductsByAtomId, getAtomById } from '@/lib/atoms'
 import { notFound } from 'next/navigation'
+import Atoms from './atoms'
 
 export default async function  Atom({ slug }: { slug: string[] }) {
   // Check if slug is being passed correctly
@@ -10,14 +11,16 @@ export default async function  Atom({ slug }: { slug: string[] }) {
 
   const atomId = slug[0]
   const productId = slug[2]
-  const { atom, error } = await getAtomById(atomId) // Changed 'atom' to 'product'
+  const { atom, error } = await getAtomById(atomId)
   if (!atom || error) {
     notFound()
   }
 
   const { products } = await getProductsByAtomId(atomId)
   const product = products?.find(product => product.id === productId)
-  console.log({ product }) // Existing log for product
+  console.log({ atomId })
+  console.log({ products })
+  console.log({ Atoms })
   return (
     <section className='grow'>
       <div className='p-8'>
@@ -25,7 +28,7 @@ export default async function  Atom({ slug }: { slug: string[] }) {
          
           <div>
             <h2 className='font-semibold'>{atom.name}</h2>
-            <p className='text-sm text-gray-500'>{atom.name}</p>
+            <p className='text-sm text-gray-500'>{atom.createdAt}</p>
           </div>
         </div>
 

@@ -18,7 +18,7 @@ export default async function AtomsLayout({
 
   const { slug } = params
   const atomId = slug?.[0]
-
+console.log({atomId})
   return (
     <section className='py-12'>
       <div className='container'>

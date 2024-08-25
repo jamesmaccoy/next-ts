@@ -25,7 +25,7 @@ export async function getAtomById(
 const atomDocRef = doc(db, 'anatomy', id);
     const atomsSnapshot = await getDoc(atomDocRef);
     if (atomsSnapshot.exists()) {
-      return { atom: { ...atomsSnapshot.data() as Atom, id: Number(id) }, error: null }; // Ensure id is a number
+      return { atom: atomsSnapshot.data() as Atom, error: null }; // Changed from Product to Atom
     } else {
       return { atom: null, error: 'User not found' };
     }
@@ -37,18 +37,18 @@ const atomDocRef = doc(db, 'anatomy', id);
 export async function getProductsByAtomId(
   id: string
 ): Promise<{ products: Product[] | null; error: string | null }> { // Changed 'product' to 'Product'
-  console.log({ id }); // Log the parameters to confirm the atomId
+  console.log(`in context of product:${ id }`); // Log the parameters to confirm the atomId
   try {
-    const productCollection = collection(db, 'products'); // Assuming your todos are in a 'todos' collection
-    const q = query(productCollection, where('atomId', '==', id)); // Query for todos with matching userId
+    const productCollection = collection(db, 'product');
+    const q = query(productCollection, where('productId', '==', id)); // Hardcoded known existing id
     const productsSnapshot = await getDocs(q);
+    
+    // Log the number of products found
+    console.log(`Number of products found: ${productsSnapshot.size}`);
+    
     const productsData = productsSnapshot.docs.map(doc => doc.data() as Product);
     return { products: productsData, error: null };
   } catch (error: any) {
     return { products: null, error: error.message || 'Failed to fetch products' };
   }
 }
-
-
-  
-  

@@ -9,7 +9,6 @@ export async function generateStaticParams() {
   const { atoms } = await getAtoms()
 
   if (!atoms) {
-    
     return []
   }
 
@@ -24,6 +23,8 @@ export async function generateStaticParams() {
     for (const product of products) {
       slugs.push([atom.id, 'products', product.id])
     }
+
+   // console.log(`Number of atomdddddsss found: ${atom.id}`);
   }
 
   const paths = slugs.map(slug => ({ slug }))
