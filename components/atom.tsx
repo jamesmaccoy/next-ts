@@ -20,6 +20,7 @@ export default async function  Atom({ slug }: { slug: string[] }) {
   const product = products?.find(product => product.id === productId)
   console.log({ atomId })
   console.log({ products })
+  console.log({ product  })
   console.log({ Atoms })
   return (
     <section className='grow'>
@@ -27,8 +28,17 @@ export default async function  Atom({ slug }: { slug: string[] }) {
         <div className='flex items-center gap-3'>
          
           <div>
-            <h2 className='font-semibold'>{atom.name}</h2>
+            <h2 className='font-semibold text-3xl'>{atom.name}</h2>
             <p className='text-sm text-gray-500'>{atom.createdAt}</p>
+            <p className='text-sm text-gray-500'>{atom.description}</p>
+            <br />
+            <h4 className='font-semibold text-sg'>Body</h4>
+            <p className='text-sm text-gray-500'>{atom.body}</p>
+            <h4 className='font-semibold'>Snippet</h4>
+            <p className='text-sm text-gray-500'>{atom.snippet}</p>
+            <p className='text-sm text-gray-500'>{atom.description}</p>
+           
+            
           </div>
         </div>
 
